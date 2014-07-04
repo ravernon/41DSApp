@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App41DS.ViewModels;assembly=App41DS"
+             xmlns:service="clr-namespace:App41DS;assembly=App41DS"
+					   x:Class="App41DS.Views.FormPage">
+ 
+  <Grid>
+    <Grid.BindingContext>
+      <local:FormPageViewModel />
+    </Grid.BindingContext>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="80" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="30" />
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="30" />
+    </Grid.ColumnDefinitions>
+
+    <Grid  Grid.ColumnSpan="3" Padding="10,20,10,25" BackgroundColor="{x:Static service:Colours.TitleBackground}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <Label YAlign="Center" Text="PLANNING - WEBSITE REQUIREMENTS"  Font="28" TextColor="White" ></Label>
+      <Label YAlign="Center"  Grid.Column="2" Text="41DS"  Font="28" TextColor="White" ></Label>
+    </Grid>
+       
+    <ActivityIndicator Color="{x:Static service:Colours.TitleBackground}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" 
+                       HeightRequest="100" WidthRequest="100" IsRunning="{Binding IsBusy}"/>
+       
+    <ScrollView Grid.Row="1" Grid.Column="1" IsVisible="{Binding IsGridBusy}">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="20" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="20"/>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="20"/>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="20"/>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="20"/>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="20"/>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          
+          <Label Text="*Client Name:" Font="20"  Grid.Row="0" Grid.Column="0"></Label>
+          <Entry Grid.Row="0" Grid.Column="1" Text="{Binding PlanningItemViewModel.ClientName, Mode=TwoWay}" ></Entry>
+
+          <Label Text="*Contact Name:" Font="20"  Grid.Row="0" Grid.Column="2"></Label>
+          <Entry Grid.Row="0" Grid.Column="3" Text="{Binding PlanningItemViewModel.ContactName, Mode=TwoWay}" ></Entry>      
+
+          <Label Text="*Contact Number:" Font="20"  Grid.Row="1" Grid.Column="0"></Label>
+          <Entry Grid.Row="1" Grid.Column="1" Text="{Binding PlanningItemViewModel.ContactNumber, Mode=TwoWay}" ></Entry>
+
+          <Label Text="*Contact Email:" Font="20"  Grid.Row="1" Grid.Column="2"></Label>
+          <Entry Grid.Row="1" Grid.Column="3" Text="{Binding PlanningItemViewModel.ContactEmail, Mode=TwoWay}"></Entry>
+
+          <Label Text="*Domain Name:" Font="20"  Grid.Row="2" Grid.Column="0"></Label>
+          <Entry Grid.Row="2" Grid.Column="1" Text="{Binding PlanningItemViewModel.DomainName, Mode=TwoWay}"></Entry>
+
+          <Label Text="Already Exists:" Font="20"  Grid.Row="2" Grid.Column="2"></Label>
+          <Switch Grid.Row="2" Grid.Column="3" IsToggled="{Binding PlanningItemViewModel.AlreadyExists, Mode=TwoWay}" ></Switch>
+
+ 		      <Label Text="*Examples:" Font="20"  Grid.Row="3" Grid.Column="0"></Label>
+          <Entry Grid.Row="3" Grid.Column="1" Text="{Binding PlanningItemViewModel.Examples}" ></Entry>
+
+           <Label Text="*Email Hosting:" Font="20"  Grid.Row="3" Grid.Column="2"></Label>
+          <Entry Grid.Row="3" Grid.Column="3" Text="{Binding PlanningItemViewModel.EmailHosting}" ></Entry>
+        </Grid>
+
+        <Grid Grid.Row="3">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Label Text="Dlc:" Font="20"  Grid.Row="0" Grid.Column="0"></Label>
+          <Grid Grid.Row="0" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="10" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="sliderNumberOfDlc" Value="{Binding PlanningItemViewModel.NumberOfDlc, Mode=TwoWay}" Grid.Column="2" Maximum="50"/>
+            <Label BindingContext="{x:Reference sliderNumberOfDlc}" Text="{Binding Value,StringFormat='{0:F0}'}" Font="20" Grid.Column="0"/>
+          </Grid>
+
+          <Label Text="Pages:" Font="20"  Grid.Row="0" Grid.Column="2"></Label>
+          <Grid Grid.Row="0" Grid.Column="3" >
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="10" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="sliderNumberOfPages"  Value="{Binding PlanningItemViewModel.NumberOfPages, Mode=TwoWay}" Grid.Column="2" Maximum="50" />
+            <Label BindingContext="{x:Reference sliderNumberOfPages}" Text="{Binding Value,StringFormat='{0:F0}'}" Font="20" Grid.Column="0"/>
+          </Grid>
+
+          <Label Text="Photos:" Font="20"  Grid.Row="0" Grid.Column="4"></Label>
+          <Grid Grid.Row="0" Grid.Column="5" >
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="10" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="sliderNumberOfPhotos"  Value="{Binding PlanningItemViewModel.NumberOfPhotos, Mode=TwoWay}" Grid.Column="2" Maximum="50"/>
+            <Label BindingContext="{x:Reference sliderNumberOfPhotos}" Text="{Binding Value,StringFormat='{0:F0}'}" Font="20" Grid.Column="0"/>
+          </Grid>
+
+          <Label Text="Office365:" Font="20"  Grid.Row="4" Grid.Column="0"></Label>
+          <Switch Grid.Row="4" Grid.Column="1"  IsToggled="{Binding PlanningItemViewModel.Office365, Mode=TwoWay}"></Switch>
+
+          <Label Text="Dropbox:" Font="20"  Grid.Row="4" Grid.Column="2"></Label>
+          <Switch Grid.Row="4" Grid.Column="3"  IsToggled="{Binding PlanningItemViewModel.HasDropbox, Mode=TwoWay}"></Switch>
+
+          <Label Text="Existing Branding:" Font="20"  Grid.Row="4" Grid.Column="4"></Label>
+          <Switch Grid.Row="4" Grid.Column="5"  IsToggled="{Binding PlanningItemViewModel.HasExistingBranding, Mode=TwoWay}"></Switch>
+        </Grid>
+        
+        <Grid Grid.Row="5">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="50" />
+          </Grid.RowDefinitions>
+
+          <Label Text="Other Functionality:" Font="20" ></Label>
+          <Editor x:Name="editor" Grid.Row="2" Text="{Binding PlanningItemViewModel.OtherFunctionality, Mode=TwoWay}"></Editor>
+
+          <Label Text="Additional Services Required:" Font="20" Grid.Row="4"/>
+          <Editor Grid.Row="6" Text="{Binding PlanningItemViewModel.AdditionalServicesRequired, Mode=TwoWay}"></Editor>
+        </Grid>
+
+        <Grid Grid.Row="7">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+
+          <Label Text="Contact Form:" Font="20" ></Label>
+          <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding ContactForm,Mode=TwoWay}"></Switch>
+
+          <Label Text="Blog:" Font="20" Grid.Column="2"></Label>
+          <Switch Grid.Column="3" IsToggled="{Binding Blog,Mode=TwoWay}"></Switch>
+
+          <Label Text="Photo Gallery:" Font="20"  Grid.Row="1" Grid.Column="0"></Label>
+          <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding PhotoGallery,Mode=TwoWay}"></Switch>
+
+          <Label Text="Viedo Gallery:" Font="20"  Grid.Row="1" Grid.Column="2"></Label>
+          <Switch Grid.Row="1" Grid.Column="3" IsToggled="{Binding VideoGallery,Mode=TwoWay}"></Switch>
+
+          <Label Text="E-Newsletter:" Font="20"  Grid.Row="2" Grid.Column="0"></Label>
+          <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding ENewsletter,Mode=TwoWay}"></Switch>
+
+          <Label Text="Vertical Navigation:" Font="20"  Grid.Row="2" Grid.Column="2"></Label>
+          <Switch Grid.Row="2" Grid.Column="3" IsToggled="{Binding VerticalNavigation,Mode=TwoWay}"></Switch>
+
+          <Label Text="Horizontal Navigation:" Font="20" Grid.Row="3" Grid.Column="0"></Label>
+          <Switch Grid.Row="3" Grid.Column="1" IsToggled="{Binding HorizontalNavigation,Mode=TwoWay}"></Switch>
+
+          <Label Text="Social Media Sharing:" Font="20"  Grid.Row="4" Grid.Column="0"></Label>
+          <Switch Grid.Row="4" Grid.Column="1" IsToggled="{Binding SocialMediaSharing,Mode=TwoWay}"></Switch>
+
+          <Label Text="Third Party Plugins:" Font="20"  Grid.Row="3" Grid.Column="2"></Label>
+          <Switch Grid.Row="3" Grid.Column="3" IsToggled="{Binding ThirdPartyPlugins,Mode=TwoWay}"></Switch>
+
+          <Label Text="Content Management System:" Font="20"  Grid.Row="4" Grid.Column="2"></Label>
+          <Switch Grid.Row="4" Grid.Column="3" IsToggled="{Binding ContentManagementSystem,Mode=TwoWay}"></Switch>
+
+        </Grid>
+
+        <Grid Grid.Row="9">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="200" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Label Text="Mobile Phone:" Font="20"  Grid.Row="0" Grid.Column="0"></Label>
+          <Switch Grid.Row="0" Grid.Column="1" IsToggled="{Binding Phone,Mode=TwoWay}"></Switch>
+
+          <Label Text="Desktop:" Font="20"  Grid.Row="0" Grid.Column="2"></Label>
+          <Switch Grid.Row="0" Grid.Column="3" IsToggled="{Binding Desktop,Mode=TwoWay}"></Switch>
+
+          <Label Text="Tablet:" Font="20"  Grid.Row="1" Grid.Column="0"></Label>
+          <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding Tablet,Mode=TwoWay}"></Switch>
+
+          <Label Text="Laptop:" Font="20"  Grid.Row="1" Grid.Column="2"></Label>
+          <Switch Grid.Row="1" Grid.Column="3" IsToggled="{Binding Laptop,Mode=TwoWay}"></Switch>
+        </Grid>       
+        
+        <Grid Grid.Row="11">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="60"/>
+          </Grid.ColumnDefinitions>
+          
+          <Label Text="{Binding Message}" HorizontalOptions="Center" Font="20" TextColor="{x:Static service:Colours.TitleBackground}"></Label>
+          
+          <Button Grid.Column="1" Text="Save" Command="{Binding SaveCommand}"/>
+
+          <Button Grid.Column="3" Text="Clear" Command="{Binding ClearCommand}"/>
+        </Grid>
+
+        <Grid Grid.Row="12">
+          <Label Text="IT Business Support | Software Development | Website Graphic Design | Cloud Services" Font="15" ></Label>
+        </Grid>
+      
+      </Grid>
+    </ScrollView>
+  </Grid>
+</ContentPage>
